@@ -11,4 +11,8 @@ public interface VehicleRecordsRepository extends JpaRepository<VehicleRecords, 
     Optional<VehicleRecords> findByVehiclePlateAndExitTimeIsNull(String vehiclePlate);
 
     List<VehicleRecords> findVehicleRecordsByExitTimeIsNull();
+
+    Optional<VehicleRecords> findByVehiclePlateAndExitTimeIsNotNull(String vehiclePlate);
+
+    Optional<VehicleRecords> findTopByVehiclePlateAndExitTimeIsNotNullOrderByExitTimeDesc(String vehiclePlate);
 }
