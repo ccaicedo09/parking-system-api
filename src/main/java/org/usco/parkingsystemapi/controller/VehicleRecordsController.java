@@ -19,6 +19,11 @@ import java.util.List;
 public class VehicleRecordsController {
     private final VehicleRecordsService vehicleRecordsService;
 
+    @GetMapping
+    public String welcome() {
+        return "Welcome to the parking system API";
+    }
+
     @PostMapping("/create")
     public ResponseEntity<String> createVehicleRecord(@RequestBody VehiclePlateDTO vehiclePlateDTO) {
         String vehiclePlate = vehiclePlateDTO.getVehiclePlate().trim();
