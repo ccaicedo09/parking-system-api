@@ -6,6 +6,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.usco.parkingsystemapi.dto.ExitVehicleResponseDTO;
+import org.usco.parkingsystemapi.dto.VehicleResponseDTO;
 import org.usco.parkingsystemapi.exceptions.InvalidPlatePatternException;
 import org.usco.parkingsystemapi.exceptions.VehicleAlreadyExitedException;
 import org.usco.parkingsystemapi.exceptions.VehicleAlreadyParkedException;
@@ -90,8 +91,17 @@ public class VehicleRecordsService {
         }
     }
 
-    public List<VehicleRecords> getCurrentlyParkedVehicles() {
-        return vehicleRecordsRepository.findVehicleRecordsByExitTimeIsNull();
+    public List<VehicleResponseDTO> getCurrentlyParkedVehicles() {
+        List<VehicleRecords> vehicleRecords = vehicleRecordsRepository.findVehicleRecordsByExitTimeIsNull();
+        return vehicleRecords.stream()
+                .map(vehicleRecord -> {
+                    VehicleResponseDTO vehicleResponseDTO = new VehicleResponseDTO();
+                    vehicleResponseDTO.setId(vehicleRecord.getId());
+                    vehicleResponseDTO.setVehiclePlate(vehicleRecord.getVehiclePlate());
+                    vehicleResponseDTO.setEntryTime(formatDateTime(vehicleRecord.getEntryTime()));
+                    return vehicleResponseDTO;
+                })
+                .toList();
     }
 
     public List<VehicleRecords> getVehicleRecords() {

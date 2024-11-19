@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.usco.parkingsystemapi.dto.ExitVehicleResponseDTO;
 import org.usco.parkingsystemapi.dto.VehiclePlateDTO;
+import org.usco.parkingsystemapi.dto.VehicleResponseDTO;
 import org.usco.parkingsystemapi.model.VehicleRecords;
 import org.usco.parkingsystemapi.service.VehicleRecordsService;
 
@@ -49,7 +50,7 @@ public class VehicleRecordsController {
     }
 
     @GetMapping("/currently-parked")
-    public ResponseEntity<List<VehicleRecords>> getCurrentlyParkedVehicles() {
+    public ResponseEntity<List<VehicleResponseDTO>> getCurrentlyParkedVehicles() {
         return ResponseEntity.ok().body(vehicleRecordsService.getCurrentlyParkedVehicles());
     }
 
