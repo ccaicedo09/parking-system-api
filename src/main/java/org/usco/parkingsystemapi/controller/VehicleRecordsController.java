@@ -42,7 +42,7 @@ public class VehicleRecordsController {
         return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 
-    @DeleteMapping("/cancel-exit")
+    @PostMapping("/cancel-exit")
     public ResponseEntity<String> cancelVehicleExit(@RequestBody VehiclePlateDTO vehiclePlateDTO) {
         String vehiclePlate = vehiclePlateDTO.getVehiclePlate().trim();
         vehicleRecordsService.cancelVehicleExit(vehiclePlate);

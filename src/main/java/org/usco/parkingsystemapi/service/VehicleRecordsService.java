@@ -68,6 +68,10 @@ public class VehicleRecordsService {
             exitVehicleResponseDTO.setExitTime(formatDateTime(vehicleRecord.getExitTime()));
             exitVehicleResponseDTO.setMinutesParked(duration.toMinutes());
             exitVehicleResponseDTO.setFeeToPay(feeToPay);
+            exitVehicleResponseDTO.setFormattedInfo("Placa del vehículo: " + vehicleRecord.getVehiclePlate() + "\n" +
+                    "Hora de ingreso: " + exitVehicleResponseDTO.getEntryTime() + "\n" +
+                    "Hora de salida: " + exitVehicleResponseDTO.getExitTime() + "\n" +
+                    "Total a pagar: " + vehicleRecord.getPaidFee());
 
             vehicleRecordsRepository.save(vehicleRecord);
             return exitVehicleResponseDTO;

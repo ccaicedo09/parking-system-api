@@ -14,4 +14,5 @@ public class ExitVehicleResponseDTO {
     private String exitTime;
     private Long minutesParked;
     private Double feeToPay;
+    private String formattedInfo;
 }
